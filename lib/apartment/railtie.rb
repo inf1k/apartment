@@ -27,8 +27,8 @@ module Apartment
     #   Note that this doens't entirely work as expected in Development, because this is called before classes are reloaded
     #   See the middleware/console declarations below to help with this. Hope to fix that soon.
     #
-    config.to_prepare do
-      unless Rails.env.test?
+    unless Rails.env.test?
+      config.to_prepare do
         Apartment::Tenant.init unless ARGV.include? 'assets:precompile'
       end
     end
