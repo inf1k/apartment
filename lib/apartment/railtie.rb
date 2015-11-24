@@ -28,7 +28,9 @@ module Apartment
     #   See the middleware/console declarations below to help with this. Hope to fix that soon.
     #
     config.to_prepare do
-      Apartment::Tenant.init unless ARGV.include? 'assets:precompile'
+      unless Rails.env.test?
+        Apartment::Tenant.init unless ARGV.include? 'assets:precompile'
+      end
     end
 
     #
